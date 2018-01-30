@@ -20,7 +20,8 @@ set relativenumber
 set laststatus=2
 " Hide mode from status line
 set noshowmode
-" Open NERDTree automatically
-autocmd vimenter * NERDTree
+" NERDTreee
+" Show hidden files in explorer
+let NERDTreeShowHidden=1
 " Close NERDTree when closing the file
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
