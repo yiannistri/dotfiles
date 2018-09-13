@@ -18,8 +18,10 @@ brew install awscli
 brew install dep
 brew install erlang
 brew install git
-brew install go
 brew install ghc
+brew install go
+brew install graphvizv
+brew install htop
 brew install kubectl
 brew install nmap
 brew install node
