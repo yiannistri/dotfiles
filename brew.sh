@@ -22,6 +22,7 @@ brew install ghc
 brew install go
 brew install graphvizv
 brew install htop
+brew install kops
 brew install kubectl
 brew install nmap
 brew install node
