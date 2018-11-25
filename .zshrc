@@ -101,3 +101,7 @@ source $ZSH/oh-my-zsh.sh
 
 # Direnv setup
 eval "$(direnv hook zsh)"
+
+# Pyenv setup
+eval "$(pyenv init -)"
+eval "$(pyenv virtualenv-init -)"
