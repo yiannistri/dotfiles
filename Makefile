@@ -44,6 +44,18 @@ install-powerline-fonts:
 	./fonts/install.sh
 	rm -rf fonts
 
+.PHONY .SILENT: install-zsh-autosuggestions
+install-zsh-autosuggestions:
+	rm -rf ~/.oh-my-zsh/custom/plugins/zsh-autosuggestions
+	git clone https://github.com/zsh-users/zsh-autosuggestions.git ~/.oh-my-zsh/custom/plugins/zsh-autosuggestions
+
+.PHONY .SILENT: setup-vim
+setup-vim:
+	mkdir -p ~/.vim/autoload ~/.vim/bundle
+	curl -LSso ~/.vim/autoload/pathogen.vim https://tpo.pe/pathogen.vim
+	rm -rf ~/.vim/bundle/vim-colors-solarized
+	git clone https://github.com/altercation/vim-colors-solarized.git ~/.vim/bundle/vim-colors-solarized
+
 .PHONY .SILENT: install-oh-my-zsh
 install-oh-my-zsh:
 	## Change shell

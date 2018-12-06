@@ -64,10 +64,12 @@ DEFAULT_USER=$(whoami)
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(
+  helm
   git
   golang
   kubectl
   z
+  zsh-autosuggestions
 )
 
 source $ZSH/oh-my-zsh.sh
