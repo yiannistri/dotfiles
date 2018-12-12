@@ -59,6 +59,8 @@ setup-vim:
 	git clone https://github.com/scrooloose/nerdtree.git ~/.vim/bundle/nerdtree
 	rm -rf ~/.vim/bundle/syntastic
 	git clone https://github.com/scrooloose/syntastic.git ~/.vim/bundle/syntastic
+	rm -rf ~/.vim/bundle/vim-devicons
+	git clone https://github.com/ryanoasis/vim-devicons ~/.vim/bundle/vim-devicons
 
 .PHONY .SILENT: install-oh-my-zsh
 install-oh-my-zsh:
