@@ -1,2 +1,15 @@
 {
+    "go.useLanguageServer": true,
+    "[go]": {
+        "editor.snippetSuggestions": "none",
+        "editor.formatOnSave": true,
+        "editor.codeActionsOnSave": {
+            "source.organizeImports": true
+        }
+    },
+    "gopls": {
+        "usePlaceholders": true, // add parameter placeholders when completing a function
+        "wantCompletionDocumentation": true // for documentation in completion items
+    },
+    "files.eol": "\n", // formatting only supports LF line endings
 }
