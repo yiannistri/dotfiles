@@ -30,5 +30,9 @@ for file in $(find $PWD -type f -maxdepth 1 -name ".*" -not -name ".git"); do
     ln -sf $file $target;
 done;
 
+## Install VSCode settings
+echo "Linking $PWD/VSCode/settings.json to $HOME/Library/Application\ Support/Code/User/settings.json"
+ln -sf $PWD/VSCode/settings.json $HOME/Library/Application\ Support/Code/User/settings.json
+
 brew upgrade
 brew cleanup
