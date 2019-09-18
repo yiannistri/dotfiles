@@ -1,4 +1,11 @@
 {
+    "go.toolsGopath": "~/.go",
+    "go.lintTool":"golangci-lint",
+    "go.lintFlags": [
+		"--fast"
+	],
+    "go.lintOnSave": "package",
+    "go.testOnSave": true,
     "go.useLanguageServer": true,
     "[go]": {
         "editor.snippetSuggestions": "none",
