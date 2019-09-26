@@ -34,5 +34,17 @@ done;
 echo "Linking $PWD/VSCode/settings.json to $HOME/Library/Application\ Support/Code/User/settings.json"
 ln -sf $PWD/VSCode/settings.json $HOME/Library/Application\ Support/Code/User/settings.json
 
+## Setup vim
+mkdir -p ~/.vim/autoload ~/.vim/bundle
+curl -LSso ~/.vim/autoload/pathogen.vim https://tpo.pe/pathogen.vim
+rm -rf ~/.vim/bundle/vim-colors-solarized
+git clone https://github.com/altercation/vim-colors-solarized.git ~/.vim/bundle/vim-colors-solarized
+rm -rf ~/.vim/bundle/nerdtree
+git clone https://github.com/scrooloose/nerdtree.git ~/.vim/bundle/nerdtree
+rm -rf ~/.vim/bundle/syntastic
+git clone https://github.com/scrooloose/syntastic.git ~/.vim/bundle/syntastic
+rm -rf ~/.vim/bundle/vim-devicons
+git clone https://github.com/ryanoasis/vim-devicons ~/.vim/bundle/vim-devicons
+
 brew upgrade
 brew cleanup

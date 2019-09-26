@@ -20,6 +20,8 @@ set relativenumber
 set laststatus=2
 " Hide mode from status line
 set noshowmode
+" Needed for displaying vim-devicons
+set encoding=utf-8
 " NERDTreee
 " Show hidden files in explorer
 let NERDTreeShowHidden=1
