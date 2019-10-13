@@ -41,6 +41,8 @@ rm -rf ~/.vim/bundle/vim-colors-solarized
 git clone https://github.com/altercation/vim-colors-solarized.git ~/.vim/bundle/vim-colors-solarized
 rm -rf ~/.vim/bundle/nerdtree
 git clone https://github.com/scrooloose/nerdtree.git ~/.vim/bundle/nerdtree
+rm -rf ~/.vim/bundle/vim-fugitive
+git clone https://github.com/tpope/vim-fugitive.git ~/.vim/bundle/vim-fugitive
 rm -rf ~/.vim/bundle/syntastic
 git clone https://github.com/scrooloose/syntastic.git ~/.vim/bundle/syntastic
 rm -rf ~/.vim/bundle/vim-devicons
