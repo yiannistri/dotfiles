@@ -78,8 +78,12 @@ source $ZSH/oh-my-zsh.sh
 
 # export MANPATH="/usr/local/man:$MANPATH"
 export GOPATH=$HOME/.go
+export ANDROID_SDK=$HOME/Library/Android/sdk
 export PATH=$PATH:$GOPATH/bin
 export PATH=$PATH:~/Library/Python/3.7/bin
+export PATH=$PATH:/usr/local/opt/helm@2/bin
+export PATH=$PATH:$HOME/Library/Android/sdk/platform-tools
+
 # You may need to manually set your language environment
 # export LANG=en_US.UTF-8
 
