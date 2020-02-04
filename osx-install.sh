@@ -50,3 +50,7 @@ git clone https://github.com/ryanoasis/vim-devicons ~/.vim/bundle/vim-devicons
 
 brew upgrade
 brew cleanup
+
+## VSCode extensions
+code --install-extension timonwong.shellcheck
+code --install-extension ms-vscode.go
