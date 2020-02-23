@@ -54,3 +54,4 @@ brew cleanup
 ## VSCode extensions
 code --install-extension timonwong.shellcheck
 code --install-extension ms-vscode.go
+code --install-extension ms-kubernetes-tools.vscode-kubernetes-tools
