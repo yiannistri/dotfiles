@@ -83,6 +83,8 @@ export PATH=$PATH:$GOPATH/bin
 export PATH=$PATH:~/Library/Python/3.7/bin
 export PATH=$PATH:/usr/local/opt/helm@2/bin
 export PATH=$PATH:$HOME/Library/Android/sdk/platform-tools
+GPG_TTY=$(tty)
+export GPG_TTY
 
 # You may need to manually set your language environment
 # export LANG=en_US.UTF-8
