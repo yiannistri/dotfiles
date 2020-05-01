@@ -7,12 +7,14 @@ install_essential_packages(){
         fonts-powerline \
     )
 
+    sudo apt update
+    sudo apt upgrade -y
     sudo apt install -y ${packages[@]}
 }
 
 install_essential_packages
 
-sudo snap install --classic vscode
+sudo snap install --classic code
 
 curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
 unzip awscliv2.zip
@@ -27,6 +29,10 @@ chsh -s $(which zsh)
 if [ ! -d "$HOME/.oh-my-zsh" ]; then
   curl -fsSL https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh | sh
 fi
+
+## Install zsh-autosuggestions
+rm -rf ~/.oh-my-zsh/custom/plugins/zsh-autosuggestions
+git clone https://github.com/zsh-users/zsh-autosuggestions.git ~/.oh-my-zsh/custom/plugins/zsh-autosuggestions
 
 ## Install dotfiles
 for file in $(find $PWD -type f -maxdepth 1 -name ".*" -not -name ".git"); do
