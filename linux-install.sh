@@ -4,7 +4,7 @@ install_essential_packages(){
     local -a packages; packages=( \
         git curl python3-pip \
         vim zsh direnv \
-        fonts-powerline \
+        fonts-powerline hugo \
     )
 
     sudo apt update
@@ -12,7 +12,12 @@ install_essential_packages(){
     sudo apt install -y ${packages[@]}
 }
 
-install_essential_packages
+install_development_tools(){
+    curl -O https://dl.google.com/go/go1.14.2.linux-amd64.tar.gz
+    tar -xvf go1.14.2.linux-amd64.tar.gz
+    sudo rm -rf /usr/local/go
+    sudo mv go /usr/local
+    rm go1.14.2.linux-amd64.tar.gz
 
 sudo snap install --classic code
 
@@ -21,6 +26,21 @@ unzip awscliv2.zip
 sudo ./aws/install --update
 rm -rf ./aws
 rm awscliv2.zip
+
+    curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | sudo apt-key add -
+    echo "deb https://dl.yarnpkg.com/debian/ stable main" | sudo tee /etc/apt/sources.list.d/yarn.list
+    sudo apt update && sudo apt install -y 
+    
+    curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
+    sudo add-apt-repository \
+    "deb [arch=amd64] https://download.docker.com/linux/ubuntu \
+    bionic \
+    stable"
+    sudo apt update && sudo apt install -y docker-ce docker-ce-cli containerd.io
+}
+
+install_essential_packages
+install_development_tools
 
 # Make ZSH the default shell environment
 chsh -s $(which zsh)
