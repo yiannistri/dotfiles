@@ -1,15 +1,71 @@
 #!/bin/bash
+set -e
+set -o pipefail
 
-install_essential_packages(){
+check_is_sudo() {
+	if [ "$EUID" -ne 0 ]; then
+		echo "Please run as root."
+		exit
+	fi
+}
+
+setup_sources() {
     local -a packages; packages=( \
-        git curl python3-pip \
-        vim zsh direnv \
-        fonts-powerline hugo \
+        apt-transport-https \
+        ca-certificates \
+        curl \
+        software-properties-common \
     )
 
-    sudo apt update
-    sudo apt upgrade -y
-    sudo apt install -y ${packages[@]}
+    apt update || true
+    apt install -y ${packages[@]} --no-install-recommends
+
+    # Docker
+    curl -sSL https://download.docker.com/linux/ubuntu/gpg | apt-key add -
+    add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu bionic stable"
+
+    # Google cloud sdk
+    curl -sS https://packages.cloud.google.com/apt/doc/apt-key.gpg | apt-key --keyring /usr/share/keyrings/cloud.google.gpg add -
+    echo "deb [signed-by=/usr/share/keyrings/cloud.google.gpg] http://packages.cloud.google.com/apt cloud-sdk main" | tee /etc/apt/sources.list.d/google-cloud-sdk.list
+
+    # Brave browser
+    curl -sS https://brave-browser-apt-release.s3.brave.com/brave-core.asc | apt-key --keyring /etc/apt/trusted.gpg.d/brave-browser-release.gpg add -
+    echo "deb [arch=amd64] https://brave-browser-apt-release.s3.brave.com/ stable main" | tee /etc/apt/sources.list.d/brave-browser-release.list
+    
+    # NodeJS
+    curl -sSL https://deb.nodesource.com/setup_12.x | bash -
+
+    # Yarn
+    curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | apt-key add -
+    echo "deb https://dl.yarnpkg.com/debian/ stable main" | tee /etc/apt/sources.list.d/yarn.list
+}
+
+install_packages(){
+    local -a packages; packages=( \
+        brave-browser \
+        containerd.io \
+        curl \
+        direnv \
+        docker-ce \
+        docker-ce-cli \
+        fonts-powerline \
+        git \
+        google-cloud-sdk \
+        hugo \
+        nodejs \
+        python3-pip \
+        yarn \
+        vim \
+        zsh \
+    )
+
+    apt update || true
+    apt upgrade -y
+    apt install -y ${packages[@]}
+
+    apt autoremove -y
+    apt autoclean
+    apt clean
 }
 
 install_development_tools(){
@@ -27,18 +83,13 @@ sudo ./aws/install --update
 rm -rf ./aws
 rm awscliv2.zip
 
-    curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | sudo apt-key add -
-    echo "deb https://dl.yarnpkg.com/debian/ stable main" | sudo tee /etc/apt/sources.list.d/yarn.list
-    sudo apt update && sudo apt install -y 
+    sudo groupadd docker && sudo usermod -aG docker $
     
-    curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
-    sudo add-apt-repository \
-    "deb [arch=amd64] https://download.docker.com/linux/ubuntu \
-    bionic \
-    stable"
-    sudo apt update && sudo apt install -y docker-ce docker-ce-cli containerd.io
+    sudo curl -L "https://github.com/docker/compose/releases/download/1.25.5/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
+    sudo chmod +x /usr/local/bin/docker-compose
 }
 
+setup_zsh() {
 install_essential_packages
 install_development_tools
 
@@ -61,3 +112,29 @@ for file in $(find $PWD -type f -maxdepth 1 -name ".*" -not -name ".git"); do
     echo "Linking $file to $target";
     ln -sf $file $target;
 done;
+
+}
+
+usage() {
+    echo -e "linux-install.sh\\n\\tThis script installs my basic setup for a debian laptop\\n"
+    echo "Usage:"
+    echo "  base   - setup sources & install base pkgs"
+}
+
+main() {
+    local cmd=$1
+
+	if [[ -z "$cmd" ]]; then
+		usage
+		exit 1
+	fi
+
+    if [[ $cmd == "base" ]]; then
+		check_is_sudo
+		# setup /etc/apt/sources.list
+		setup_sources
+        install_packages
+    fi
+}
+
+main "$@"
