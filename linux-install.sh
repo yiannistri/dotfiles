@@ -14,6 +14,7 @@ setup_sources() {
         apt-transport-https \
         ca-certificates \
         curl \
+        gnupg2 \
         software-properties-common \
     )
 
@@ -23,6 +24,10 @@ setup_sources() {
     # Docker
     curl -sSL https://download.docker.com/linux/ubuntu/gpg | apt-key add -
     add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu bionic stable"
+
+    # Kubernetes
+    curl -s https://packages.cloud.google.com/apt/doc/apt-key.gpg | apt-key add -
+    echo "deb https://apt.kubernetes.io/ kubernetes-xenial main" | tee /etc/apt/sources.list.d/kubernetes.list
 
     # Google cloud sdk
     curl -sS https://packages.cloud.google.com/apt/doc/apt-key.gpg | apt-key --keyring /usr/share/keyrings/cloud.google.gpg add -
@@ -51,6 +56,7 @@ install_packages(){
         fonts-powerline \
         git \
         google-cloud-sdk \
+        kubectl \
         hugo \
         nodejs \
         python3-pip \
@@ -68,31 +74,37 @@ install_packages(){
     apt clean
 }
 
+install_snaps(){
+    snap install --classic code
+    snap install --classic slack
+}
+
 install_development_tools(){
-    curl -O https://dl.google.com/go/go1.14.2.linux-amd64.tar.gz
-    tar -xvf go1.14.2.linux-amd64.tar.gz
-    sudo rm -rf /usr/local/go
-    sudo mv go /usr/local
-    rm go1.14.2.linux-amd64.tar.gz
+    # Golang
+    curl https://dl.google.com/go/go1.14.2.linux-amd64.tar.gz -o go.tar.gz
+    tar -xvf go.tar.gz
+    rm -rf /usr/local/go
+    mv go /usr/local
+    rm go.tar.gz
 
-sudo snap install --classic code
-
-curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
+    # AWS CLI
+    curl https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip -o awscliv2.zip
 unzip awscliv2.zip
-sudo ./aws/install --update
+    ./aws/install --update
 rm -rf ./aws
 rm awscliv2.zip
 
-    sudo groupadd docker && sudo usermod -aG docker $
+    # Docker compose
+    curl -L "https://github.com/docker/compose/releases/download/1.25.5/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
+    chmod +x /usr/local/bin/docker-compose
+}
     
-    sudo curl -L "https://github.com/docker/compose/releases/download/1.25.5/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
-    sudo chmod +x /usr/local/bin/docker-compose
+post_install(){
+    # Use docker without sudo
+    groupadd docker && usermod -aG docker $USER
 }
 
 setup_zsh() {
-install_essential_packages
-install_development_tools
-
 # Make ZSH the default shell environment
 chsh -s $(which zsh)
 
@@ -134,6 +146,9 @@ main() {
 		# setup /etc/apt/sources.list
 		setup_sources
         install_packages
+        install_snaps
+        install_development_tools
+        post_install
     fi
 }
 
