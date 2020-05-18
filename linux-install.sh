@@ -2,6 +2,10 @@
 set -e
 set -o pipefail
 
+readonly GO_VERSION=1.12.7
+readonly FOOTLOOSE_VERSION=0.5.0
+readonly TERRAFORM_VERSION=0.11.10
+
 # Choose a user account to use for this installation
 get_user() {
 	if [[ -z "${TARGET_USER-}" ]]; then
@@ -70,6 +74,8 @@ setup_sources() {
 
 install_packages(){
     local -a packages; packages=( \
+        ansible \
+        blueman \
         brave-browser \
         containerd.io \
         curl \
@@ -82,6 +88,7 @@ install_packages(){
         kubectl \
         hugo \
         nodejs \
+        python-is-python3 \
         python3-pip \
         tree \
         yarn \
@@ -101,11 +108,13 @@ install_packages(){
 install_snaps(){
     snap install --classic code
     snap install --classic slack
+    snap install --classic skype
+    snap install yq
 }
 
 install_development_tools(){
     # Golang
-    curl https://dl.google.com/go/go1.14.2.linux-amd64.tar.gz -o go.tar.gz
+    curl "https://dl.google.com/go/go${GO_VERSION}.linux-amd64.tar.gz" -o go.tar.gz
     tar -xvf go.tar.gz
     rm -rf /usr/local/go
     mv go /usr/local
@@ -142,6 +151,25 @@ install_development_tools(){
     mv ./linux-amd64/helm /usr/local/bin/helm
     chmod +x /usr/local/bin/helm
     rm -rf ./linux-amd64
+
+    # Footloose
+    curl -L "https://github.com/weaveworks/footloose/releases/download/${FOOTLOOSE_VERSION}/footloose-${FOOTLOOSE_VERSION}-linux-x86_64" -o /usr/local/bin/footloose
+    chmod +x /usr/local/bin/footloose
+
+    # Terraform
+    curl -L "https://releases.hashicorp.com/terraform/${TERRAFORM_VERSION}/terraform_${TERRAFORM_VERSION}_linux_amd64.zip" -o terraform.zip
+    unzip terraform.zip
+    mv terraform /usr/local/bin/terraform
+    chmod +x /usr/local/bin/terraform
+    rm terraform.zip
+
+    (
+        set -x
+        set +e
+        
+        # Embedmd
+        /usr/local/go/bin/go get github.com/campoy/embedmd
+    )
 }
 
 setup_zsh() {
