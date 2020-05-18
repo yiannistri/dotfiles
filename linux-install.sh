@@ -85,6 +85,7 @@ install_packages(){
         fonts-powerline \
         git \
         google-cloud-sdk \
+        jq \
         kubectl \
         hugo \
         nodejs \
