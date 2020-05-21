@@ -1,6 +1,5 @@
 #!/bin/bash
-set -e
-set -o pipefail
+set -euo pipefail
 
 readonly GO_VERSION=1.12.7
 readonly FOOTLOOSE_VERSION=0.5.0
@@ -92,8 +91,9 @@ install_packages(){
         python-is-python3 \
         python3-pip \
         tree \
-        yarn \
         vim \
+        vlc \
+        yarn \
         zsh \
     )
 
@@ -152,6 +152,14 @@ install_development_tools(){
     mv ./linux-amd64/helm /usr/local/bin/helm
     chmod +x /usr/local/bin/helm
     rm -rf ./linux-amd64
+
+    # AWS IAM Authenticator
+    curl -L https://amazon-eks.s3.us-west-2.amazonaws.com/1.16.8/2020-04-16/bin/linux/amd64/aws-iam-authenticator -o /usr/local/bin/aws-iam-authenticator
+    chmod +x /usr/local/bin/aws-iam-authenticator
+
+    # eksctl
+    curl -L "https://github.com/weaveworks/eksctl/releases/latest/download/eksctl_$(uname -s)_amd64.tar.gz" | tar xz -C /tmp
+    mv /tmp/eksctl /usr/local/bin
 
     # Footloose
     curl -L "https://github.com/weaveworks/footloose/releases/download/${FOOTLOOSE_VERSION}/footloose-${FOOTLOOSE_VERSION}-linux-x86_64" -o /usr/local/bin/footloose
