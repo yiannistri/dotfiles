@@ -1,4 +1,5 @@
 {
+    "editor.fontFamily": "'Fira Code','Source Code Variable','Droid Sans Mono', 'monospace', monospace, 'Droid Sans Fallback'",
     "go.toolsGopath": "~/.go",
     "go.lintTool":"golangci-lint",
     "go.lintFlags": [
