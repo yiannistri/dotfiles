@@ -4,6 +4,7 @@ set -euo pipefail
 readonly GO_VERSION=1.12.7
 readonly FOOTLOOSE_VERSION=0.5.0
 readonly TERRAFORM_VERSION=0.11.10
+readonly KUBEBUILDER_VERSION=2.3.1
 
 # Choose a user account to use for this installation
 get_user() {
@@ -172,6 +173,9 @@ install_development_tools(){
     mv terraform /usr/local/bin/terraform
     chmod +x /usr/local/bin/terraform
     rm terraform.zip
+
+    curl -L "https://go.kubebuilder.io/dl/${KUBEBUILDER_VERSION}/linux/amd64" | tar -xz -C /tmp/
+    mv /tmp/kubebuilder_${KUBEBUILDER_VERSION}_linux_amd64 /usr/local/kubebuilder
 
     (
         set -x

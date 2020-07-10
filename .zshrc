@@ -84,6 +84,7 @@ export PATH=$PATH:~/Library/Python/3.7/bin
 export PATH=$PATH:/usr/local/opt/helm@2/bin
 export PATH=$PATH:$HOME/Library/Android/sdk/platform-tools
 export PATH=$PATH:/usr/local/go/bin
+export PATH=$PATH:/usr/local/kubebuilder/bin
 export PATH=$PATH:~/.local/bin
 GPG_TTY=$(tty)
 export GPG_TTY
