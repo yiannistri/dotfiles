@@ -175,9 +175,14 @@ install_development_tools(){
     chmod +x /usr/local/bin/terraform
     rm terraform.zip
 
+    # Kubebuilder
     curl -L "https://go.kubebuilder.io/dl/${KUBEBUILDER_VERSION}/linux/amd64" | tar -xz -C /tmp/
     rm -rf /usr/local/kubebuilder
     mv /tmp/kubebuilder_${KUBEBUILDER_VERSION}_linux_amd64 /usr/local/kubebuilder
+
+    # Kind
+    curl -L "https://kind.sigs.k8s.io/dl/v0.8.1/kind-$(uname)-amd64" -o ./usr/local/kind
+    chmod +x /usr/local/kind
 
     (
         set -x
@@ -273,7 +278,6 @@ main() {
 		check_is_sudo
 		get_user
 		setup_sources
-        setup_vim
         install_packages
         install_snaps
         install_development_tools
@@ -281,6 +285,7 @@ main() {
         post_install
     elif [[ $cmd == "zsh" ]]; then
         setup_zsh
+        setup_vim
     else
         usage
     fi
