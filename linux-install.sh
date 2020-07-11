@@ -199,6 +199,10 @@ setup_zsh() {
     rm -rf ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
     git clone --depth=1 https://github.com/zsh-users/zsh-autosuggestions.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
 
+    ## Install Powerlevel10k
+    rm -rf ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/themes/powerlevel10k
+    git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/themes/powerlevel10k
+
     mkdir -p ~/.local/share/fonts
     cd ~/.local/share/fonts
     curl -fLo "MesloLGS NF Regular.ttf" https://github.com/romkatv/powerlevel10k-media/raw/master/MesloLGS%20NF%20Regular.ttf
@@ -208,6 +212,16 @@ setup_zsh() {
 
     curl -fLo "Source Code Pro Italic" https://github.com/adobe-fonts/source-code-pro/releases/download/variable-fonts/SourceCodeVariable-Italic.ttf
     curl -fLo "Source Code Pro Bold" https://github.com/adobe-fonts/source-code-pro/releases/download/variable-fonts/SourceCodeVariable-Roman.ttf
+}
+
+install_dotfiles(){
+    ## Install dotfiles
+    for file in $(find $PWD -type f -maxdepth 1 -name ".*" -not -name ".git"); do
+        filename=$(basename $file);
+        target="$TARGET_USER_HOME/$filename";
+        echo "Linking $file to $target";
+        ln -sf $file $target;
+    done;
 }
 
 post_install(){
@@ -220,16 +234,6 @@ post_install(){
     ln -sf $PWD/VSCode/settings.json $TARGET_USER_HOME/.config/Code/User/settings.json
     ## Install VSCode extensions
     ./code.sh
-}
-
-install_dotfiles(){
-    ## Install dotfiles
-    for file in $(find $PWD -type f -maxdepth 1 -name ".*" -not -name ".git"); do
-        filename=$(basename $file);
-        target="$TARGET_USER_HOME/$filename";
-        echo "Linking $file to $target";
-        ln -sf $file $target;
-    done;
 }
 
 usage() {
