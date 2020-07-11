@@ -181,8 +181,8 @@ install_development_tools(){
     mv /tmp/kubebuilder_${KUBEBUILDER_VERSION}_linux_amd64 /usr/local/kubebuilder
 
     # Kind
-    curl -L "https://kind.sigs.k8s.io/dl/v0.8.1/kind-$(uname)-amd64" -o /usr/local/kind
-    chmod +x /usr/local/kind
+    curl -L "https://kind.sigs.k8s.io/dl/v0.8.1/kind-$(uname)-amd64" -o /usr/local/bin/kind
+    chmod +x /usr/local/bin/kind
 
     (
         set -x
