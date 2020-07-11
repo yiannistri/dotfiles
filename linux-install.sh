@@ -1,7 +1,7 @@
 #!/bin/bash
 set -euo pipefail
 
-readonly GO_VERSION=1.12.7
+readonly GO_VERSION=1.14.4
 readonly FOOTLOOSE_VERSION=0.5.0
 readonly TERRAFORM_VERSION=0.11.10
 readonly KUBEBUILDER_VERSION=2.3.1
@@ -95,6 +95,7 @@ install_packages(){
         tree \
         vim \
         vlc \
+        wavemon \
         yarn \
         zsh \
     )
@@ -175,6 +176,7 @@ install_development_tools(){
     rm terraform.zip
 
     curl -L "https://go.kubebuilder.io/dl/${KUBEBUILDER_VERSION}/linux/amd64" | tar -xz -C /tmp/
+    rm -rf /usr/local/kubebuilder
     mv /tmp/kubebuilder_${KUBEBUILDER_VERSION}_linux_amd64 /usr/local/kubebuilder
 
     (
@@ -212,6 +214,22 @@ setup_zsh() {
 
     curl -fLo "Source Code Pro Italic" https://github.com/adobe-fonts/source-code-pro/releases/download/variable-fonts/SourceCodeVariable-Italic.ttf
     curl -fLo "Source Code Pro Bold" https://github.com/adobe-fonts/source-code-pro/releases/download/variable-fonts/SourceCodeVariable-Roman.ttf
+}
+
+setup_vim() {
+    ## Setup vim
+    mkdir -p ~/.vim/autoload ~/.vim/bundle
+    curl -LSso ~/.vim/autoload/pathogen.vim https://tpo.pe/pathogen.vim
+    rm -rf ~/.vim/bundle/vim-colors-solarized
+    git clone https://github.com/altercation/vim-colors-solarized.git ~/.vim/bundle/vim-colors-solarized
+    rm -rf ~/.vim/bundle/nerdtree
+    git clone https://github.com/scrooloose/nerdtree.git ~/.vim/bundle/nerdtree
+    rm -rf ~/.vim/bundle/vim-fugitive
+    git clone https://github.com/tpope/vim-fugitive.git ~/.vim/bundle/vim-fugitive
+    rm -rf ~/.vim/bundle/syntastic
+    git clone https://github.com/scrooloose/syntastic.git ~/.vim/bundle/syntastic
+    rm -rf ~/.vim/bundle/vim-devicons
+    git clone https://github.com/ryanoasis/vim-devicons ~/.vim/bundle/vim-devicons
 }
 
 install_dotfiles(){
@@ -255,6 +273,7 @@ main() {
 		check_is_sudo
 		get_user
 		setup_sources
+        setup_vim
         install_packages
         install_snaps
         install_development_tools
