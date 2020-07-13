@@ -5,6 +5,7 @@ readonly GO_VERSION=1.14.4
 readonly FOOTLOOSE_VERSION=0.5.0
 readonly TERRAFORM_VERSION=0.11.10
 readonly KUBEBUILDER_VERSION=2.3.1
+readonly KUSTOMIZE_VERSION=3.8.0
 
 # Choose a user account to use for this installation
 get_user() {
@@ -111,7 +112,6 @@ install_packages(){
 
 install_snaps(){
     snap install --classic code
-    snap install --classic slack
     snap install --classic skype
     snap install yq
 }
@@ -144,9 +144,16 @@ install_development_tools(){
     chmod +x /usr/local/bin/minikube
 
     # Zoom
-    wget https://zoom.us/client/latest/zoom_amd64.deb
-    apt install -y ./zoom_amd64.deb
-    rm ./zoom_amd64.deb
+    echo "Installing zoom"
+    curl -L https://zoom.us/client/latest/zoom_amd64.deb  -o zoom.deb
+    apt install -y ./zoom.deb
+    rm ./zoom.deb
+
+    # Slack
+    echo "Installing slack"
+    curl -L https://downloads.slack-edge.com/linux_releases/slack-desktop-4.7.0-amd64.deb -o slack.deb
+    apt install -y ./slack.deb
+    rm ./slack.deb
 
     # Helm
     curl -L https://get.helm.sh/helm-v2.16.7-linux-amd64.tar.gz -o helm.tar.gz
@@ -179,6 +186,10 @@ install_development_tools(){
     curl -L "https://go.kubebuilder.io/dl/${KUBEBUILDER_VERSION}/linux/amd64" | tar -xz -C /tmp/
     rm -rf /usr/local/kubebuilder
     mv /tmp/kubebuilder_${KUBEBUILDER_VERSION}_linux_amd64 /usr/local/kubebuilder
+
+    # Kustomize
+    curl -L "https://github.com/kubernetes-sigs/kustomize/releases/download/kustomize%2Fv${KUSTOMIZE_VERSION}/kustomize_v${KUSTOMIZE_VERSION}_linux_amd64.tar.gz"  | tar xz -C /tmp
+    mv /tmp/kustomize /usr/local/bin
 
     # Kind
     curl -L "https://kind.sigs.k8s.io/dl/v0.8.1/kind-$(uname)-amd64" -o /usr/local/bin/kind
