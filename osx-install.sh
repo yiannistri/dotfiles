@@ -7,6 +7,8 @@ if test ! $(which brew); then
   /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
 fi
 
+readonly KUBEBUILDER_VERSION=2.3.1
+
 # Update Homebrew recipes
 brew update --force
 
@@ -64,10 +66,16 @@ post_install() {
   echo "Linking $PWD/VSCode/settings.json to $HOME/Library/Application\ Support/Code/User/settings.json"
   ln -sf $PWD/VSCode/settings.json $HOME/Library/Application\ Support/Code/User/settings.json
 
+  # Kubebuilder
+  curl -L "https://go.kubebuilder.io/dl/${KUBEBUILDER_VERSION}/darwin/amd64" | tar -xz -C /tmp/
+  sudo rm -rf /usr/local/kubebuilder
+  sudo mv /tmp/kubebuilder_${KUBEBUILDER_VERSION}_darwin_amd64 /usr/local/kubebuilder
+
   ## Install VSCode extensions
   code --install-extension timonwong.shellcheck
   code --install-extension golang.Go
   code --install-extension ms-kubernetes-tools.vscode-kubernetes-tools
+  code --install-extension MS-vsliveshare.vsliveshare-pack
 }
 
 main() {
