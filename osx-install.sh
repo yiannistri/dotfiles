@@ -71,6 +71,9 @@ post_install() {
   sudo rm -rf /usr/local/kubebuilder
   sudo mv /tmp/kubebuilder_${KUBEBUILDER_VERSION}_darwin_amd64 /usr/local/kubebuilder
 
+  # Ginkgo
+  /usr/local/bin/go get -u github.com/onsi/ginkgo/ginkgo
+
   ## Install VSCode extensions
   code --install-extension timonwong.shellcheck
   code --install-extension golang.Go

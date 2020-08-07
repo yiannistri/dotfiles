@@ -202,6 +202,9 @@ install_development_tools(){
         
         # Embedmd
         /usr/local/go/bin/go get github.com/campoy/embedmd
+
+        # Ginkgo
+        /usr/local/go/bin/go get -u github.com/onsi/ginkgo/ginkgo
     )
 }
 
