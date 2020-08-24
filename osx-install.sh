@@ -79,6 +79,7 @@ post_install() {
   code --install-extension golang.Go
   code --install-extension ms-kubernetes-tools.vscode-kubernetes-tools
   code --install-extension MS-vsliveshare.vsliveshare-pack
+  code --install-extension foam.foam-vscode
 }
 
 main() {
