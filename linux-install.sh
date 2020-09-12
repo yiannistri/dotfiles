@@ -3,8 +3,10 @@ set -euo pipefail
 
 readonly GO_VERSION=1.14.4
 readonly FOOTLOOSE_VERSION=0.5.0
-readonly TERRAFORM_VERSION=0.11.10
+readonly SLACK_VERSION=4.8.0
+readonly TERRAFORM_VERSION=0.11.7
 readonly KUBEBUILDER_VERSION=2.3.1
+readonly KUBECTL_VERSION=1.17.11-00
 readonly KUSTOMIZE_VERSION=3.8.0
 
 # Choose a user account to use for this installation
@@ -89,11 +91,13 @@ install_packages(){
         google-cloud-sdk \
         hub \
         jq \
-        kubectl \
+        kubectl=$KUBECTL_VERSION \
         hugo \
         nodejs \
         python-is-python3 \
         python3-pip \
+        qbittorrent \
+        tmuxinator \
         tree \
         vim \
         vlc \
@@ -104,7 +108,7 @@ install_packages(){
 
     apt update || true
     apt upgrade -y
-    apt install -y ${packages[@]}
+    apt install -y ${packages[@]} --allow-downgrades
 
     apt autoremove -y
     apt autoclean
@@ -152,7 +156,7 @@ install_development_tools(){
 
     # Slack
     echo "Installing slack"
-    curl -L https://downloads.slack-edge.com/linux_releases/slack-desktop-4.7.0-amd64.deb -o slack.deb
+    curl -L https://downloads.slack-edge.com/linux_releases/slack-desktop-${SLACK_VERSION}-amd64.deb -o slack.deb
     apt install -y ./slack.deb
     rm ./slack.deb
 
@@ -225,6 +229,11 @@ setup_zsh() {
     rm -rf ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/themes/powerlevel10k
     git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/themes/powerlevel10k
 
+    # Install spaceship-prompt
+    rm -rf ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/themes/spaceship-prompt
+    git clone --depth=1 https://github.com/denysdovhan/spaceship-prompt.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/themes/spaceship-prompt
+    ln -s ${ZSH_CUSTOM:-~/.oh-my-zsh/custom/}/themes/spaceship-prompt/spaceship.zsh-theme ${ZSH_CUSTOM:-~/.oh-my-zsh/custom/}/themes/spaceship.zsh-theme
+
     mkdir -p ~/.local/share/fonts
     cd ~/.local/share/fonts
     curl -fLo "MesloLGS NF Regular.ttf" https://github.com/romkatv/powerlevel10k-media/raw/master/MesloLGS%20NF%20Regular.ttf
@@ -259,6 +268,14 @@ install_dotfiles(){
         target="$TARGET_USER_HOME/$filename";
         echo "Linking $file to $target";
         ln -sf $file $target;
+    done;
+
+    ## Install .config directories
+    for dir in $(find $PWD/.config -mindepth 1 -maxdepth 1  -type d); do
+        dirname=$(basename $dir);
+        target="$TARGET_USER_HOME/.config/$dirname";
+        echo "Linking $dir to $target";
+        ln -sd $dir $target;
     done;
 }
 
