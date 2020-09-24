@@ -33,6 +33,11 @@ setup_zsh() {
   ## Install Powerlevel10k
   rm -rf ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/themes/powerlevel10k
   git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/themes/powerlevel10k
+
+  # Install spaceship-prompt
+  rm -rf ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/themes/spaceship-prompt
+  git clone --depth=1 https://github.com/denysdovhan/spaceship-prompt.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/themes/spaceship-prompt
+  ln -s ${ZSH_CUSTOM:-~/.oh-my-zsh/custom/}/themes/spaceship-prompt/spaceship.zsh-theme ${ZSH_CUSTOM:-~/.oh-my-zsh/custom/}/themes/spaceship.zsh-theme
 }
 
 setup_vim() {
@@ -73,6 +78,8 @@ post_install() {
 
   # Ginkgo
   /usr/local/bin/go get -u github.com/onsi/ginkgo/ginkgo
+  # Cobra
+  /usr/local/bin/go get -u github.com/spf13/cobra/cobra
 
   ## Install VSCode extensions
   code --install-extension timonwong.shellcheck
@@ -80,6 +87,7 @@ post_install() {
   code --install-extension ms-kubernetes-tools.vscode-kubernetes-tools
   code --install-extension MS-vsliveshare.vsliveshare-pack
   code --install-extension foam.foam-vscode
+  code --install-extension james-yu.latex-workshop
 }
 
 main() {
