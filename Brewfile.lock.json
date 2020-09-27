@@ -5,13 +5,13 @@
         "revision": "12702c2b9111a447bb89cd887771d20cffab4e63"
       },
       "homebrew/cask": {
-        "revision": "aca0ea6a081d456c4e73442f1a58c27302350be6"
+        "revision": "1ca7ef26d1fd4c0414aa1b4d3d30f725b5e36ed8"
       },
       "homebrew/cask-fonts": {
-        "revision": "bd966014eceec41a130707813f67f35f7c354149"
+        "revision": "e1f9f9ed7ca864f223f903bc8b4abacebe8f2923"
       },
       "homebrew/core": {
-        "revision": "a75ce0495b2123214ab573ce109f10a4935ccfa4"
+        "revision": "3be15ade1a7f0dd37c757d9992c791d0bb7d5264"
       }
     },
     "brew": {
@@ -817,6 +817,27 @@
             }
           }
         }
+      },
+      "octant": {
+        "version": "0.16.0",
+        "bottle": {
+          "cellar": ":any_skip_relocation",
+          "prefix": "/usr/local",
+          "files": {
+            "catalina": {
+              "url": "https://homebrew.bintray.com/bottles/octant-0.16.0.catalina.bottle.tar.gz",
+              "sha256": "dacbf213d3de74ec4fbd46e8d64ed18bfb691c71f60f9cc03d4c3972a9d8f721"
+            },
+            "mojave": {
+              "url": "https://homebrew.bintray.com/bottles/octant-0.16.0.mojave.bottle.tar.gz",
+              "sha256": "ee09012fe4bfd347894df354319c7535ea0dd1bc9c0114b01ae7b4a1ddf49f85"
+            },
+            "high_sierra": {
+              "url": "https://homebrew.bintray.com/bottles/octant-0.16.0.high_sierra.bottle.tar.gz",
+              "sha256": "335f454cdd11793220b3fe280445a4c5e85455c6aee269d9aab7133789663835"
+            }
+          }
+        }
       }
     },
     "cask": {
@@ -839,7 +860,7 @@
         }
       },
       "aws-vault": {
-        "version": "6.1.0",
+        "version": "6.2.0",
         "options": {
           "full_name": "aws-vault"
         }
@@ -1003,7 +1024,7 @@
       "catalina": {
         "HOMEBREW_VERSION": "2.5.2",
         "HOMEBREW_PREFIX": "/usr/local",
-        "Homebrew/homebrew-core": "a75ce0495b2123214ab573ce109f10a4935ccfa4",
+        "Homebrew/homebrew-core": "3be15ade1a7f0dd37c757d9992c791d0bb7d5264",
         "CLT": "1103.0.32.59",
         "Xcode": "11.5",
         "macOS": "10.15.5"
