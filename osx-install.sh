@@ -76,6 +76,16 @@ post_install() {
   sudo rm -rf /usr/local/kubebuilder
   sudo mv /tmp/kubebuilder_${KUBEBUILDER_VERSION}_darwin_amd64 /usr/local/kubebuilder
 
+  # Polaris
+  curl -L "https://github.com/FairwindsOps/polaris/releases/download/${POLARIS_VERSION}/polaris_${POLARIS_VERSION}_darwin_amd64.tar.gz" | tar -xz -C /tmp
+  sudo rm -rf /usr/local/bin/polaris
+  sudo mv /tmp/polaris /usr/local/bin/polaris
+
+  # GOTK
+  curl -L "https://github.com/fluxcd/toolkit/releases/download/v${GOTK_VERSION}/gotk_${GOTK_VERSION}_darwin_amd64.tar.gz" | tar -xz -C /tmp
+  sudo rm -rf /usr/local/bin/gotk
+  sudo mv /tmp/gotk /usr/local/bin/gotk
+
   # Ginkgo
   /usr/local/bin/go get -u github.com/onsi/ginkgo/ginkgo
   # Cobra

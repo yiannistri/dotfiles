@@ -90,6 +90,7 @@ GPG_TTY=$(tty)
 export GPG_TTY
 export EDITOR='vim'
 
+export SPACESHIP_KUBECTL_SHOW=true
 # You may need to manually set your language environment
 # export LANG=en_US.UTF-8
 
