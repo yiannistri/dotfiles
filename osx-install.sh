@@ -8,6 +8,8 @@ if test ! $(which brew); then
 fi
 
 readonly KUBEBUILDER_VERSION=2.3.1
+readonly POLARIS_VERSION=1.2.1
+readonly GOTK_VERSION=0.1.4
 
 # Update Homebrew recipes
 brew update --force
