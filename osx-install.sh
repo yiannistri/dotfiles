@@ -26,17 +26,13 @@ setup_zsh() {
   fi
 
   ## Install zsh-autosuggestions
-  rm -rf ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
-  git clone --depth=1 https://github.com/zsh-users/zsh-autosuggestions.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
-
-  ## Install Powerlevel10k
-  rm -rf ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/themes/powerlevel10k
-  git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/themes/powerlevel10k
+  rm -rf "${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions"
+  git clone --depth=1 https://github.com/zsh-users/zsh-autosuggestions.git "${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions"
 
   # Install spaceship-prompt
-  rm -rf ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/themes/spaceship-prompt
-  git clone --depth=1 https://github.com/denysdovhan/spaceship-prompt.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/themes/spaceship-prompt
-  ln -s ${ZSH_CUSTOM:-~/.oh-my-zsh/custom/}/themes/spaceship-prompt/spaceship.zsh-theme ${ZSH_CUSTOM:-~/.oh-my-zsh/custom/}/themes/spaceship.zsh-theme
+  rm -rf "${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/themes/spaceship-prompt"
+  git clone --depth=1 https://github.com/denysdovhan/spaceship-prompt.git "${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/themes/spaceship-prompt"
+  ln -s "${ZSH_CUSTOM:-~/.oh-my-zsh/custom/}/themes/spaceship-prompt/spaceship.zsh-theme" "${ZSH_CUSTOM:-~/.oh-my-zsh/custom/}/themes/spaceship.zsh-theme"
 }
 
 setup_vim() {
