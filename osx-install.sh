@@ -20,9 +20,6 @@ brew bundle
 brew bundle cleanup --force
 
 setup_zsh() {
-  # Make ZSH the default shell environment
-  chsh -s $(which zsh)
-
   ## Install oh-my-zsh
   if [ ! -d "$HOME/.oh-my-zsh" ]; then
     curl -fsSL https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh | sh
