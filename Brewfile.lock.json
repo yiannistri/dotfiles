@@ -5,13 +5,13 @@
         "revision": "394732eda2af23ce7db1f59f79e9bb7d3727f1e2"
       },
       "homebrew/cask": {
-        "revision": "ebcb49110070a3fc06829ac8c252650f800c90dc"
+        "revision": "e736dc9b54451212a4be9d4672fa9b1470535a6f"
       },
       "homebrew/cask-fonts": {
-        "revision": "7870ea547a01b8e0d4149e6b7eb1e15664683454"
+        "revision": "255b11b747db57315d5982940dd9b7ae64f26b82"
       },
       "homebrew/core": {
-        "revision": "6154757287860f83aacc04ac6c37b23da98d2b43"
+        "revision": "8bcd0e3722ba050928900e5ee7182d5d8b1bd7a1"
       }
     },
     "brew": {
@@ -356,7 +356,7 @@
         "bottle": false
       },
       "rust": {
-        "version": "1.46.0",
+        "version": "1.46.0.reinstall",
         "bottle": {
           "cellar": ":any",
           "prefix": "/usr/local",
@@ -600,22 +600,22 @@
         }
       },
       "hugo": {
-        "version": "0.76.2",
+        "version": "0.76.3",
         "bottle": {
           "cellar": ":any_skip_relocation",
           "prefix": "/usr/local",
           "files": {
             "catalina": {
-              "url": "https://homebrew.bintray.com/bottles/hugo-0.76.2.catalina.bottle.tar.gz",
-              "sha256": "cfe1f0320edf85121567a729e89b17ac718df32ad8bc4c0aa1c306de06b9f4b8"
+              "url": "https://homebrew.bintray.com/bottles/hugo-0.76.3.catalina.bottle.tar.gz",
+              "sha256": "798f5ed39ae42e13cd62b079e81a738b700e6d3ee280f4819356585f0d182900"
             },
             "mojave": {
-              "url": "https://homebrew.bintray.com/bottles/hugo-0.76.2.mojave.bottle.tar.gz",
-              "sha256": "79d8a408afd593fc2b1a73f62ab6d87c848fb924c4dfe50bd3502a2ae1fc8c14"
+              "url": "https://homebrew.bintray.com/bottles/hugo-0.76.3.mojave.bottle.tar.gz",
+              "sha256": "cc71ec51479bfe9ca7e2a73bf674e6c624061ef460022c23022e4ca06a875697"
             },
             "high_sierra": {
-              "url": "https://homebrew.bintray.com/bottles/hugo-0.76.2.high_sierra.bottle.tar.gz",
-              "sha256": "917d8d077b13fe5cb74e4965ccb4c8e794359eadb5bed679fc0fb63093d190dd"
+              "url": "https://homebrew.bintray.com/bottles/hugo-0.76.3.high_sierra.bottle.tar.gz",
+              "sha256": "40d1e147f7ae8c47670f0d39c000ed5a16e717be11ad26828564c520157fa7c6"
             }
           }
         }
@@ -863,7 +863,7 @@
     },
     "cask": {
       "1password": {
-        "version": "7.3.2",
+        "version": "7.6",
         "options": {
           "full_name": "1password"
         }
@@ -875,7 +875,7 @@
         }
       },
       "android-studio": {
-        "version": "3.5.1.0,191.5900203",
+        "version": "4.0.1.0,193.6626763",
         "options": {
           "full_name": "android-studio"
         }
@@ -893,7 +893,7 @@
         }
       },
       "docker": {
-        "version": "2.1.0.1,37199",
+        "version": "2.4.0.0,48506",
         "options": {
           "full_name": "docker"
         }
@@ -923,7 +923,7 @@
         }
       },
       "iterm2": {
-        "version": "3.3.1",
+        "version": "3.3.12",
         "options": {
           "full_name": "iterm2"
         }
@@ -941,7 +941,7 @@
         }
       },
       "postman": {
-        "version": "7.5.0",
+        "version": "7.33.1",
         "options": {
           "full_name": "postman"
         }
@@ -953,13 +953,13 @@
         }
       },
       "skype": {
-        "version": "8.54.0.91",
+        "version": "8.65.0.76",
         "options": {
           "full_name": "skype"
         }
       },
       "slack": {
-        "version": "4.0.1",
+        "version": "4.10.0",
         "options": {
           "full_name": "slack"
         }
@@ -977,19 +977,19 @@
         }
       },
       "visual-studio-code": {
-        "version": "1.42.0",
+        "version": "1.49.3",
         "options": {
           "full_name": "visual-studio-code"
         }
       },
       "vlc": {
-        "version": "3.0.8",
+        "version": "3.0.11.1",
         "options": {
           "full_name": "vlc"
         }
       },
       "zoomus": {
-        "version": "4.4.55387.0716",
+        "version": "5.3.52877.0927",
         "options": {
           "full_name": "zoomus"
         }
@@ -1001,7 +1001,7 @@
         }
       },
       "firefox": {
-        "version": "72.0.2",
+        "version": "81.0.1",
         "options": {
           "full_name": "firefox"
         }
@@ -1013,7 +1013,7 @@
         }
       },
       "brave-browser": {
-        "version": "81.1.9.72,109.72",
+        "version": "85.1.14.84,114.84",
         "options": {
           "full_name": "brave-browser"
         }
@@ -1029,6 +1029,12 @@
         "options": {
           "full_name": "mactex"
         }
+      },
+      "font-meslo-lg-nerd-font": {
+        "version": "2.1.0",
+        "options": {
+          "full_name": "font-meslo-lg-nerd-font"
+        }
       }
     }
   },
@@ -1043,10 +1049,10 @@
         "macOS": "10.13.6"
       },
       "catalina": {
-        "HOMEBREW_VERSION": "2.5.4",
+        "HOMEBREW_VERSION": "2.5.5",
         "HOMEBREW_PREFIX": "/usr/local",
-        "Homebrew/homebrew-core": "6154757287860f83aacc04ac6c37b23da98d2b43",
-        "CLT": "1103.0.32.59",
+        "Homebrew/homebrew-core": "8bcd0e3722ba050928900e5ee7182d5d8b1bd7a1",
+        "CLT": "12.0.0.0.1.1599194153",
         "Xcode": "12.0.1",
         "macOS": "10.15.7"
       }
