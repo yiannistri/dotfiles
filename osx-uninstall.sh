@@ -4,4 +4,6 @@ echo "Cleaning up your Mac..."
 
 brew cask uninstall --force $(brew bundle list --casks)
 
-# brew uninstall --force $(brew bundle list --brews)
+brew uninstall --force $(brew bundle list --brews) --ignore-dependencies  
+
+brew cleanup
