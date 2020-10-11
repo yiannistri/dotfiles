@@ -80,12 +80,10 @@ source $ZSH/oh-my-zsh.sh
 export GOPATH=$HOME/.go
 export ANDROID_SDK=$HOME/Library/Android/sdk
 export PATH=$PATH:$GOPATH/bin
-export PATH=$PATH:~/Library/Python/3.7/bin
-export PATH=$PATH:/usr/local/opt/helm@2/bin
 export PATH=$PATH:$HOME/Library/Android/sdk/platform-tools
 export PATH=$PATH:/usr/local/go/bin
 export PATH=$PATH:/usr/local/kubebuilder/bin
-export PATH=$PATH:~/.local/bin
+export PATH=$PATH:/usr/local/sbin
 GPG_TTY=$(tty)
 export GPG_TTY
 export EDITOR='vim'
@@ -115,6 +113,8 @@ export SPACESHIP_KUBECTL_SHOW=true
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
+
+source .extra
 
 # Direnv setup
 eval "$(direnv hook zsh)"
