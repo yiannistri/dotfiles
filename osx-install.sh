@@ -36,19 +36,20 @@ setup_zsh() {
 }
 
 setup_vim() {
-  ## Setup vim
-  mkdir -p ~/.vim/autoload ~/.vim/bundle
-  curl -LSso ~/.vim/autoload/pathogen.vim https://tpo.pe/pathogen.vim
-  rm -rf ~/.vim/bundle/vim-colors-solarized
-  git clone https://github.com/altercation/vim-colors-solarized.git ~/.vim/bundle/vim-colors-solarized
-  rm -rf ~/.vim/bundle/nerdtree
-  git clone https://github.com/scrooloose/nerdtree.git ~/.vim/bundle/nerdtree
-  rm -rf ~/.vim/bundle/vim-fugitive
-  git clone https://github.com/tpope/vim-fugitive.git ~/.vim/bundle/vim-fugitive
-  rm -rf ~/.vim/bundle/syntastic
-  git clone https://github.com/scrooloose/syntastic.git ~/.vim/bundle/syntastic
-  rm -rf ~/.vim/bundle/vim-devicons
-  git clone https://github.com/ryanoasis/vim-devicons ~/.vim/bundle/vim-devicons
+  # Setup vim
+  mkdir -p ~/.vim/pack/plugins/start
+  rm -rf ~/.vim/pack/plugins/start/vim-colors-solarized
+  git clone https://github.com/altercation/vim-colors-solarized.git ~/.vim/pack/plugins/start/vim-colors-solarized
+  rm -rf ~/.vim/pack/plugins/start/nerdtree
+  git clone https://github.com/scrooloose/nerdtree.git ~/.vim/pack/plugins/start/nerdtree
+  rm -rf ~/.vim/pack/plugins/start/vim-fugitive
+  git clone https://github.com/tpope/vim-fugitive.git ~/.vim/pack/plugins/start/vim-fugitive
+  rm -rf ~/.vim/pack/plugins/start/syntastic
+  git clone https://github.com/scrooloose/syntastic.git ~/.vim/pack/plugins/start/syntastic
+  rm -rf ~/.vim/pack/plugins/start/ctrlp.vim
+  git clone https://github.com/ctrlpvim/ctrlp.vim.git ~/.vim/pack/plugins/start/ctrlp.vim
+  rm -rf ~/.vim/pack/plugins/start/vim-devicons
+  git clone https://github.com/ryanoasis/vim-devicons ~/.vim/pack/plugins/start/vim-devicons  
 }
 
 install_dotfiles(){
