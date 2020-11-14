@@ -87,8 +87,8 @@ export PATH=$PATH:/usr/local/sbin
 GPG_TTY=$(tty)
 export GPG_TTY
 export EDITOR='vim'
+export CLOUDSDK_PYTHON=/usr/bin/python
 
-export SPACESHIP_KUBECTL_SHOW=true
 # You may need to manually set your language environment
 # export LANG=en_US.UTF-8
 

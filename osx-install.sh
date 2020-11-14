@@ -9,7 +9,9 @@ fi
 
 readonly KUBEBUILDER_VERSION=2.3.1
 readonly POLARIS_VERSION=1.2.1
-readonly GOTK_VERSION=0.1.4
+readonly FLUX2_VERSION=0.2.5
+readonly SONOBUOY_VERSION=0.19.0
+readonly JK_VERSION=0.4.0
 
 # Update Homebrew recipes
 brew update --force
@@ -77,10 +79,19 @@ post_install() {
   sudo rm -rf /usr/local/bin/polaris
   sudo mv /tmp/polaris /usr/local/bin/polaris
 
-  # GOTK
-  curl -L "https://github.com/fluxcd/toolkit/releases/download/v${GOTK_VERSION}/gotk_${GOTK_VERSION}_darwin_amd64.tar.gz" | tar -xz -C /tmp
-  sudo rm -rf /usr/local/bin/gotk
-  sudo mv /tmp/gotk /usr/local/bin/gotk
+  # Flux2
+  curl -L "https://github.com/fluxcd/flux2/releases/download/v${FLUX2_VERSION}/flux_${FLUX2_VERSION}_darwin_amd64.tar.gz" | tar -xz -C /tmp
+  sudo rm -rf /usr/local/bin/flux2
+  sudo mv /tmp/flux2 /usr/local/bin/flux2
+
+  # Sonobuoy
+  curl -L "https://github.com/vmware-tanzu/sonobuoy/releases/download/v${SONOBUOY_VERSION}/sonobuoy_${SONOBUOY_VERSION}_darwin_amd64.tar.gz" | tar -xz -C /tmp
+  sudo rm -rf /usr/local/bin/sonobuoy
+  sudo mv /tmp/sonobuoy /usr/local/bin/sonobuoy
+
+  # JK
+  curl -L "https://github.com/jkcfg/jk/releases/download/${JK_VERSION}/jk-darwin-amd64" -o /usr/local/bin/jk
+  chmod +x /usr/local/bin/jk
 
   # Ginkgo
   /usr/local/bin/go get -u github.com/onsi/ginkgo/ginkgo
