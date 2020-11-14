@@ -81,8 +81,8 @@ post_install() {
 
   # Flux2
   curl -L "https://github.com/fluxcd/flux2/releases/download/v${FLUX2_VERSION}/flux_${FLUX2_VERSION}_darwin_amd64.tar.gz" | tar -xz -C /tmp
-  sudo rm -rf /usr/local/bin/flux2
-  sudo mv /tmp/flux2 /usr/local/bin/flux2
+  sudo rm -rf /usr/local/bin/flux
+  sudo mv /tmp/flux /usr/local/bin/flux
 
   # Sonobuoy
   curl -L "https://github.com/vmware-tanzu/sonobuoy/releases/download/v${SONOBUOY_VERSION}/sonobuoy_${SONOBUOY_VERSION}_darwin_amd64.tar.gz" | tar -xz -C /tmp
