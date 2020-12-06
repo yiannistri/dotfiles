@@ -13,14 +13,6 @@ readonly FLUX2_VERSION=0.2.5
 readonly SONOBUOY_VERSION=0.19.0
 readonly JK_VERSION=0.4.0
 
-# Update Homebrew recipes
-brew update --force
-
-# Install all our dependencies with bundle (See Brewfile)
-brew tap homebrew/bundle
-brew bundle --no-lock
-brew bundle cleanup --force
-
 setup_zsh() {
   ## Install oh-my-zsh
   if [ ! -d "$HOME/.oh-my-zsh" ]; then
@@ -93,6 +85,11 @@ post_install() {
   curl -L "https://github.com/jkcfg/jk/releases/download/${JK_VERSION}/jk-darwin-amd64" -o /usr/local/bin/jk
   chmod +x /usr/local/bin/jk
 
+  # eksctl
+  curl -L "https://github.com/weaveworks/eksctl/releases/download/0.32.0/eksctl_Darwin_amd64.tar.gz"  | tar -xz -C /tmp
+  rm -f /usr/local/bin/eksctl
+  mv /tmp/eksctl /usr/local/bin/eksctl
+
   # Ginkgo
   /usr/local/bin/go get -u github.com/onsi/ginkgo/ginkgo
   # Cobra
@@ -108,14 +105,24 @@ post_install() {
 }
 
 main() {
+  # Update Homebrew recipes
+  brew update --force
+
+  # Install all our dependencies with bundle (See Brewfile)
+  brew tap homebrew/bundle
+  brew bundle --no-lock
+  brew bundle cleanup --force
+
   setup_zsh
   setup_vim
   install_dotfiles
   post_install
+
+  brew upgrade
+  brew cleanup
 }
 
 main
 
-brew upgrade
-brew cleanup
+
 
