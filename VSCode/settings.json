@@ -10,7 +10,7 @@
         "-race",
     ],
     "go.testOnSave": true,
-    "go.useLanguageServer": true,
+    "go.useLanguageServer": false,
     "[go]": {
         "editor.snippetSuggestions": "none",
         "editor.formatOnSave": true,
