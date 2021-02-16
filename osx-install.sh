@@ -102,6 +102,7 @@ post_install() {
   code --install-extension MS-vsliveshare.vsliveshare-pack
   code --install-extension foam.foam-vscode
   code --install-extension james-yu.latex-workshop
+  code --install-extension hashicorp.terraform
 }
 
 main() {
