@@ -7,8 +7,8 @@ if test ! $(which brew); then
   /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
 fi
 
-readonly KUBEBUILDER_VERSION=2.3.1
-readonly POLARIS_VERSION=1.2.1
+readonly KUBEBUILDER_VERSION=2.3.2
+readonly POLARIS_VERSION=3.1.3
 readonly FLUX2_VERSION=0.2.5
 readonly SONOBUOY_VERSION=0.19.0
 readonly JK_VERSION=0.4.0
@@ -62,30 +62,36 @@ post_install() {
   ln -sf $PWD/VSCode/settings.json $HOME/Library/Application\ Support/Code/User/settings.json
 
   # Kubebuilder
+  echo "Installing kubebuilder ${KUBEBUILDER_VERSION}"
   curl -L "https://go.kubebuilder.io/dl/${KUBEBUILDER_VERSION}/darwin/amd64" | tar -xz -C /tmp/
   sudo rm -rf /usr/local/kubebuilder
   sudo mv /tmp/kubebuilder_${KUBEBUILDER_VERSION}_darwin_amd64 /usr/local/kubebuilder
 
   # Polaris
+  echo "Installing Polaris ${POLARIS_VERSION}"
   curl -L "https://github.com/FairwindsOps/polaris/releases/download/${POLARIS_VERSION}/polaris_${POLARIS_VERSION}_darwin_amd64.tar.gz" | tar -xz -C /tmp
   sudo rm -rf /usr/local/bin/polaris
   sudo mv /tmp/polaris /usr/local/bin/polaris
 
   # Flux2
+  echo "Installing flux2 ${FLUX2_VERSION}"
   curl -L "https://github.com/fluxcd/flux2/releases/download/v${FLUX2_VERSION}/flux_${FLUX2_VERSION}_darwin_amd64.tar.gz" | tar -xz -C /tmp
   sudo rm -rf /usr/local/bin/flux
   sudo mv /tmp/flux /usr/local/bin/flux
 
   # Sonobuoy
+  echo "Installing sonobuoy ${SONOBUOY_VERSION}"
   curl -L "https://github.com/vmware-tanzu/sonobuoy/releases/download/v${SONOBUOY_VERSION}/sonobuoy_${SONOBUOY_VERSION}_darwin_amd64.tar.gz" | tar -xz -C /tmp
   sudo rm -rf /usr/local/bin/sonobuoy
   sudo mv /tmp/sonobuoy /usr/local/bin/sonobuoy
 
   # JK
+  echo "Installing jk ${JK_VERSION}"
   curl -L "https://github.com/jkcfg/jk/releases/download/${JK_VERSION}/jk-darwin-amd64" -o /usr/local/bin/jk
   chmod +x /usr/local/bin/jk
 
   # eksctl
+  echo "Installing eksctl"
   curl -L "https://github.com/weaveworks/eksctl/releases/download/0.32.0/eksctl_Darwin_amd64.tar.gz"  | tar -xz -C /tmp
   rm -f /usr/local/bin/eksctl
   mv /tmp/eksctl /usr/local/bin/eksctl
@@ -94,6 +100,8 @@ post_install() {
   /usr/local/bin/go get -u github.com/onsi/ginkgo/ginkgo
   # Cobra
   /usr/local/bin/go get -u github.com/spf13/cobra/cobra
+  # Clusterlint
+  /usr/local/bin/go get -u github.com/digitalocean/clusterlint/cmd/clusterlint
 
   ## Install VSCode extensions
   code --install-extension timonwong.shellcheck

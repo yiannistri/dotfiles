@@ -71,5 +71,7 @@ cask "spectacle"
 cask "virtualbox"
 cask "visual-studio-code"
 cask "vlc"
-cask "zoomus"
+cask "zettlr"
+cask "zoom"
+cask "zotero"
 
