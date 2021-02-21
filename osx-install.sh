@@ -99,7 +99,7 @@ post_install() {
   # Ginkgo
   /usr/local/bin/go get -u github.com/onsi/ginkgo/ginkgo
   # Cobra
-  /usr/local/bin/go get -u github.com/spf13/cobra/cobra
+  GO111MODULE=on /usr/local/bin/go get -u github.com/spf13/cobra/cobra
   # Clusterlint
   /usr/local/bin/go get -u github.com/digitalocean/clusterlint/cmd/clusterlint
 
@@ -108,7 +108,6 @@ post_install() {
   code --install-extension golang.Go
   code --install-extension ms-kubernetes-tools.vscode-kubernetes-tools
   code --install-extension MS-vsliveshare.vsliveshare-pack
-  code --install-extension foam.foam-vscode
   code --install-extension james-yu.latex-workshop
   code --install-extension hashicorp.terraform
 }
