@@ -102,6 +102,9 @@ post_install() {
   GO111MODULE=on /usr/local/bin/go get -u github.com/spf13/cobra/cobra
   # Clusterlint
   /usr/local/bin/go get -u github.com/digitalocean/clusterlint/cmd/clusterlint
+  # oauth2-proxy
+  /usr/local/bin/go get -u github.com/oauth2-proxy/oauth2-proxy/v7
+
 
   ## Install VSCode extensions
   code --install-extension timonwong.shellcheck
@@ -110,6 +113,7 @@ post_install() {
   code --install-extension MS-vsliveshare.vsliveshare-pack
   code --install-extension james-yu.latex-workshop
   code --install-extension hashicorp.terraform
+  code --install-extension ban.spellright
 }
 
 main() {
