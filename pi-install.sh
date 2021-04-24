@@ -16,6 +16,6 @@ sudo systemctl enable docker
 # Docker Compose
 sudo pip3 -v install docker-compose
 # Pi-hole
-docker-compose up -f ./config/pi-hole.yaml --detach
+docker-compose -f ./config/pi-hole.yaml up --detach
 
-sudo apt autoremove
+sudo apt -y autoremove
