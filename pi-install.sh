@@ -12,3 +12,10 @@ sudo systemctl start ssh
 # Docker
 curl -sSL https://get.docker.com | sh
 sudo usermod -aG docker $(whoami)
+sudo systemctl enable docker
+# Docker Compose
+sudo pip3 -v install docker-compose
+# Pi-hole
+docker-compose up -f ./config/pi-hole.yaml --detach
+
+sudo apt autoremove
