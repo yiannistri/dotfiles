@@ -9,7 +9,7 @@ fi
 
 readonly KUBEBUILDER_VERSION=2.3.2
 readonly POLARIS_VERSION=3.1.3
-readonly FLUX2_VERSION=0.2.5
+readonly FLUX2_VERSION=0.12.1
 readonly SONOBUOY_VERSION=0.19.0
 readonly JK_VERSION=0.4.0
 
