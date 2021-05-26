@@ -17,5 +17,7 @@ sudo systemctl enable docker
 sudo pip3 -v install docker-compose
 # Pi-hole
 docker-compose -f ./config/pi-hole.yaml up --detach
+# Home Assistant
+docker-compose -f ./config/homeassistant/docker-compose.yaml up --detach
 
 sudo apt -y autoremove
