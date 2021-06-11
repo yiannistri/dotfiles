@@ -1,10 +1,10 @@
 #!/bin/bash
 set -euo pipefail
 
-readonly GO_VERSION=1.14.4
+readonly GO_VERSION=1.16.4
 readonly FOOTLOOSE_VERSION=0.5.0
-readonly SLACK_VERSION=4.8.0
-readonly TERRAFORM_VERSION=0.11.7
+readonly SLACK_VERSION=4.16.0
+readonly TERRAFORM_VERSION=0.12.0
 readonly KUBEBUILDER_VERSION=2.3.1
 readonly KUBECTL_VERSION=1.17.11-00
 readonly KUSTOMIZE_VERSION=3.8.0
