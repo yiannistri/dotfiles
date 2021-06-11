@@ -94,6 +94,7 @@ install_packages(){
         kubectl=$KUBECTL_VERSION \
         hugo \
         nodejs \
+        openssh-server \
         python-is-python3 \
         python3-pip \
         qbittorrent \

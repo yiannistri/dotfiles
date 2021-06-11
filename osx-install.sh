@@ -10,8 +10,10 @@ fi
 readonly KUBEBUILDER_VERSION=2.3.2
 readonly POLARIS_VERSION=3.1.3
 readonly FLUX2_VERSION=0.12.1
+readonly PCTL_VERSION=0.0.2
 readonly SONOBUOY_VERSION=0.19.0
 readonly JK_VERSION=0.4.0
+readonly CLUSTERCTL_VERSION=0.3.19
 
 setup_zsh() {
   ## Install oh-my-zsh
@@ -79,6 +81,12 @@ post_install() {
   sudo rm -rf /usr/local/bin/flux
   sudo mv /tmp/flux /usr/local/bin/flux
 
+  # pctl
+  echo "Installing pctl ${PCTL_VERSION}"
+  curl -L "https://github.com/weaveworks/pctl/releases/download/v${PCTL_VERSION}/pctl_darwin_amd64.tar.gz" | tar -xz -C /tmp
+  sudo rm -rf /usr/local/bin/pctl
+  sudo mv /tmp/pctl /usr/local/bin/pctl
+
   # Sonobuoy
   echo "Installing sonobuoy ${SONOBUOY_VERSION}"
   curl -L "https://github.com/vmware-tanzu/sonobuoy/releases/download/v${SONOBUOY_VERSION}/sonobuoy_${SONOBUOY_VERSION}_darwin_amd64.tar.gz" | tar -xz -C /tmp
@@ -95,6 +103,11 @@ post_install() {
   curl -L "https://github.com/weaveworks/eksctl/releases/download/0.32.0/eksctl_Darwin_amd64.tar.gz"  | tar -xz -C /tmp
   rm -f /usr/local/bin/eksctl
   mv /tmp/eksctl /usr/local/bin/eksctl
+
+  # clusterctl
+  echo "Installing clusterctl"
+  curl -L "https://github.com/kubernetes-sigs/cluster-api/releases/download/v${CLUSTERCTL_VERSION}/clusterctl-darwin-amd64" -o /usr/local/bin/clusterctl
+  chmod +x /usr/local/bin/clusterctl
 
   # Ginkgo
   /usr/local/bin/go get -u github.com/onsi/ginkgo/ginkgo
