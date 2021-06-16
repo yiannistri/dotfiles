@@ -14,6 +14,7 @@ readonly PCTL_VERSION=0.0.2
 readonly SONOBUOY_VERSION=0.19.0
 readonly JK_VERSION=0.4.0
 readonly CLUSTERCTL_VERSION=0.3.19
+readonly WEGO_VERSION=0.0.5
 
 setup_zsh() {
   ## Install oh-my-zsh
@@ -108,6 +109,11 @@ post_install() {
   echo "Installing clusterctl"
   curl -L "https://github.com/kubernetes-sigs/cluster-api/releases/download/v${CLUSTERCTL_VERSION}/clusterctl-darwin-amd64" -o /usr/local/bin/clusterctl
   chmod +x /usr/local/bin/clusterctl
+
+  # Weave GitOps
+  echo "Installing wego"
+  curl -L "https://github.com/weaveworks/weave-gitops/releases/download/v${WEGO_VERSION}/wego-$(uname)-$(uname -m)" -o /usr/local/bin/wego
+  chmod +x /usr/local/bin/wego
 
   # Ginkgo
   /usr/local/bin/go get -u github.com/onsi/ginkgo/ginkgo
