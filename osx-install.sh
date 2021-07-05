@@ -7,13 +7,14 @@ if test ! $(which brew); then
   /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
 fi
 
-readonly KUBEBUILDER_VERSION=2.3.2
-readonly POLARIS_VERSION=3.1.3
-readonly FLUX2_VERSION=0.12.1
-readonly PCTL_VERSION=0.0.2
-readonly SONOBUOY_VERSION=0.19.0
-readonly JK_VERSION=0.4.0
 readonly CLUSTERCTL_VERSION=0.3.19
+readonly FLUX2_VERSION=0.12.1
+readonly JK_VERSION=0.4.0
+readonly KUBEBUILDER_VERSION=2.3.2
+readonly KUBECTL_VERSION=1.17.17
+readonly PCTL_VERSION=0.0.2
+readonly POLARIS_VERSION=3.1.3
+readonly SONOBUOY_VERSION=0.19.0
 readonly WEGO_VERSION=0.0.5
 
 setup_zsh() {
@@ -69,6 +70,11 @@ post_install() {
   curl -L "https://go.kubebuilder.io/dl/${KUBEBUILDER_VERSION}/darwin/amd64" | tar -xz -C /tmp/
   sudo rm -rf /usr/local/kubebuilder
   sudo mv /tmp/kubebuilder_${KUBEBUILDER_VERSION}_darwin_amd64 /usr/local/kubebuilder
+
+  # kubectl
+  echo "Installing kubectl ${KUBECTL_VERSION}"
+  curl -L "https://dl.k8s.io/release/v${KUBECTL_VERSION}/bin/darwin/amd64/kubectl" -o /usr/local/bin/kubectl
+  chmod +x /usr/local/bin/kubectl
 
   # Polaris
   echo "Installing Polaris ${POLARIS_VERSION}"
