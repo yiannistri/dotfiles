@@ -7,7 +7,7 @@ if test ! $(which brew); then
   /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
 fi
 
-readonly CLUSTERCTL_VERSION=0.3.19
+readonly CLUSTERCTL_VERSION=0.4.0
 readonly FLUX2_VERSION=0.12.1
 readonly JK_VERSION=0.4.0
 readonly KUBEBUILDER_VERSION=2.3.2
